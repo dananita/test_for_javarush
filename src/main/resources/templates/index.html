@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" th:href="@{/css/main.css}"
+          href="../../resources/css/main.css" />
+
+</head>
+<body>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Название книги</th>
+        <th>Автор</th>
+        <th>ISBN</th>
+        <th>Год выпуска</th>
+        <th>Прочитано</th>
+        <th>Описание книги</th>
+
+    </tr>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}"></td>
+    </tr>
+</table>
+
+<script type="text/javascript"
+        src="webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
