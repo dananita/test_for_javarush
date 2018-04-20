@@ -1,6 +1,7 @@
 package ru.octava.javarushtest.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.octava.javarushtest.dao.BookDAO;
 import ru.octava.javarushtest.model.Book;
 
@@ -22,10 +23,34 @@ public class BookService {
    public Book getBookById(int id){
         return bookDAO.getBookById(id);
    }
-   /* List<Book> getBookByTitle(String title);
-    List<Book> getBooksByAuthor(String author);
+   public List<Book> getBookByTitle(String title){
+        return bookDAO.getBookByTitle(title);
+   }
+   public List<Book> getBooksByAuthor(String author){
+        return bookDAO.getBooksByAuthor(author);
+   }
 
-    void addBook(Book book);
-    void updateBook(Book book);
-    void deleteBook(Book book);*/
+   @Transactional
+    public void addBook(String title, String author, String isbn, int print_year, boolean read_already, String description){
+        if (title != null && author != null) {
+            Book book = new Book();
+            book.setTitle(title);
+            book.setAuthor(author);
+            book.setIsbn(isbn);
+            book.setPrint_year(print_year);
+            book.setRead_already(read_already);
+            book.setDescription(description);
+            bookDAO.addBook(book);
+        }
+    }
+
+    @Transactional
+    public void updateBook(Book book){
+        bookDAO.updateBook(book);
+    }
+
+    @Transactional
+    public void deleteBook(Book book){
+        bookDAO.deleteBook(book);
+    }
 }
