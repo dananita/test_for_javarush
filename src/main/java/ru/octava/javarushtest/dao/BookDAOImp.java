@@ -5,6 +5,7 @@ import ru.octava.javarushtest.model.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
@@ -43,7 +44,15 @@ public class BookDAOImp implements BookDAO {
 
     @Override
     public void updateBook(Book book) {
+        /*entityManager.createQuery("update Books set title =:title," +
+                "desription = :description, isbn = :isbn," +
+                "print_year = :print_year, read_already = :read_already" +
+                " where b.id = :id", CLASS).setParameter("id", book.getId())
+                .setParameter("title",book.getTitle()).setParameter("description",book.getDescription())
+                .setParameter("isbn", book.getIsbn()).setParameter("read_already",book.isRead_already())
+                .setParameter("print_year",book.getPrint_year()).executeUpdate();*/
         entityManager.merge(book);
+        return;
     }
 
     @Override
