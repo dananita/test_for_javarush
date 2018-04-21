@@ -27,9 +27,25 @@ public class BookController {
     @PostMapping(name = "/addBook")
     public String addBookPage(@RequestParam String title, @RequestParam String author, @RequestParam String isbn,
                               @RequestParam int print_year,
-                              @RequestParam String description,@RequestParam(defaultValue = "false") boolean read_already) {
+                              @RequestParam String description, @RequestParam(defaultValue = "false") boolean read_already) {
         service.addBook(title, author, isbn, print_year, read_already, description);
         return "redirect:/index";
     }
+
+    @RequestMapping(name = "/updateBook", method = RequestMethod.PUT)
+    public String updateBookPage(@RequestParam(defaultValue = "") int id, @RequestParam(defaultValue = "") String title,
+                                 @RequestParam(defaultValue = "") String isbn, @RequestParam (defaultValue = "0")int print_year,
+                                 @RequestParam (defaultValue = "") String description, @RequestParam(defaultValue = "false") boolean read_already) {
+        service.updateBook(id, title, isbn, print_year, description, read_already);
+        return "redirect:/index";
+    }
+
+
+    @RequestMapping(name = "/delete", method = RequestMethod.DELETE)
+    public String deleteBookPage(int id) {
+        service.deleteBook(id);
+        return "redirect:/index";
+    }
+
 }
 

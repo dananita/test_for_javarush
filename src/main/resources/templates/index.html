@@ -10,68 +10,98 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
-<body> <!--data-spy="scroll" data-target=".navbar" data-offset="50"-->
-<!--<div class="container">
-    <nav class="navbar navbar-expand-sm bg-secondary navbar-dark fixed-top">
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">
-                    Изменения вносимые в таблицу книг
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="addBook.html">Добавление книги</a>
-                    <a class="dropdown-item" href="#section12">Изменения книги</a>
-                    <a class="dropdown-item" href="#section13">Удаление книги</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
-                    Варианты поиска
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="getAll.html">Вывод всех книг</a>
-                    <a class="dropdown-item" href="#section21">Поиск по ID</a>
-                    <a class="dropdown-item" href="#section22">Поик по автору</a>
-                    <a class="dropdown-item" href="#section22">Поиск по названию</a>
+<body>
+<div class="dropdown">
+    <button class="btn btn-outline-secondary" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Добавление
+    </button>
+    <div class="dropdown-menu container" aria-labelledby="dLabel">
 
-                </div>
-            </li>
-        </ul>
-    </nav>
-</div>-->
-<div class="container mt-5">
-    <form method="post" enctype="multipart/form-data" th:action="@{/addBook}">
-        <div class="form-group">
-            <label for="title">Наименование книги</label>
-            <input type="text" class="form-control" id="title" placeholder="Spring in Action" name="title">
-        </div>
-        <div class="form-group">
-            <label for="author">ФИО автора</label>
-            <input type="text" class="form-control" id="author" placeholder="Kreg" name="author">
-        </div>
-        <div class="form-group">
-            <label for="isbn">ISBN</label>
-            <input type="text" class="form-control" id="isbn" placeholder="978-0131872486" name="isbn">
-        </div>
-        <div class="form-group">
-            <label for="print_year">Год выпуска книги</label>
-            <input type="text" class="form-control" id="print_year" placeholder="2017" name="print_year">
-        </div>
-        <div class="form-group">
-            <label for="description">Описание</label>
-            <input type="text" class="form-control" id="description" placeholder="New book" name="description">
-        </div>
-        <div class="form-check form-group">
-           <label class="form-check-label">
-               <input type="checkbox" class="form-check-input" name="read_already">Прочитано
-            </label>
-        </div>
+        <form method="post" enctype="multipart/form-data" th:action="@{/addBook}">
+            <div class="form-group">
+                <label for="title">Наименование книги</label>
+                <input type="text" class="form-control" id="title" placeholder="Spring in Action" name="title">
+            </div>
+            <div class="form-group">
+                <label for="author">ФИО автора</label>
+                <input type="text" class="form-control" id="author" placeholder="Kreg" name="author">
+            </div>
+            <div class="form-group">
+                <label for="isbn">ISBN</label>
+                <input type="text" class="form-control" id="isbn" placeholder="978-0131872486" name="isbn">
+            </div>
+            <div class="form-group">
+                <label for="print_year">Год выпуска книги</label>
+                <input type="text" class="form-control" id="print_year" placeholder="2017" name="print_year">
+            </div>
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <input type="text" class="form-control" id="description" placeholder="New book" name="description">
+            </div>
+            <div class="form-check form-group">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="read_already">Прочитано
+                </label>
+            </div>
 
-        <button type="submit" class="btn btn-primary">Создать книгу</button>
-    </form>
+            <button type="submit" class="btn btn-primary">Создать книгу</button>
+        </form>
+    </div>
 </div>
 
+<div class="dropdown">
+    <button class="btn btn-outline-secondary" id="dLabel2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Изменение
+    </button>
+    <div class="dropdown-menu container" aria-labelledby="dLabel">
 
+        <form data-th-method="put" enctype="multipart/form-data" th:action="@{/updateBook}">
+            <div class="form-group">
+                <label for="id_update">ID книги</label>
+                <input type="text" class="form-control" id="id_update" name="id">
+            </div>
+            <div class="form-group">
+                <label for="title_update">Наименование книги</label>
+                <input type="text" class="form-control" id="title_update" placeholder="Spring in Action" name="title">
+            </div>
+            <div class="form-group">
+                <label for="isbn_update">ISBN</label>
+                <input type="text" class="form-control" id="isbn_update" placeholder="978-0131872486" name="isbn">
+            </div>
+            <div class="form-group">
+                <label for="print_year_update">Год выпуска книги</label>
+                <input type="text" class="form-control" id="print_year_update" placeholder="2017" name="print_year">
+            </div>
+            <div class="form-group">
+                <label for="description_update">Описание</label>
+                <input type="text" class="form-control" id="description_update" placeholder="New book" name="description">
+            </div>
+            <div class="form-check form-group">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" name="read_already">Прочитано
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Изменить книгу</button>
+        </form>
+    </div>
+</div>
+
+<div class="dropdown">
+    <button class="btn btn-outline-secondary" id="dLabel3" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Удаление
+    </button>
+    <div class="dropdown-menu container" aria-labelledby="dLabel">
+
+        <form   data-th-method="delete" enctype="multipart/form-data" th:action="@{/deleteBook} ">
+            <div class="form-group">
+                <label for="id_delete">ID книги</label>
+                <input type="text" class="form-control" id="id_delete" name="id">
+            </div>
+            <button type="submit" class="btn btn-primary" value = "Delete">Удалить книгу</button>
+        </form>
+    </div>
+</div>
 
 <div class="container mt-5" >
     <table class="table table-bordered table-hover">
