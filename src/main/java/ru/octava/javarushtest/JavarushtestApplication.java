@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JavarushtestApplication{
 
     public static void main(String[] args) {
-        SpringApplication.run(JavarushtestApplication.class, args);
+       SpringApplication.run(JavarushtestApplication.class, args);
     }
+
 }

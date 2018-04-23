@@ -6,6 +6,8 @@ import ru.octava.javarushtest.model.Book;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -27,14 +29,16 @@ public class BookDAOImp implements BookDAO {
 
     @Override
     public List<Book> getBookByTitle(String title) {
-        return entityManager.createQuery("from Book where Book.title =:title", CLASS)
-                .setParameter("title", title).getResultList();
+        return entityManager.createQuery("select b from Book b where lower(b.title) = lower(:title)", CLASS)
+                .setParameter("title", title)
+                .getResultList();
     }
 
     @Override
     public List<Book> getBooksByAuthor(String author) {
-        return entityManager.createQuery("from Book where Book.author = :author", CLASS)
-                .setParameter("author", author).getResultList();
+        return entityManager.createQuery("select b from Book b where lower(b.author) = lower(:author)", CLASS)
+                .setParameter("author", author)
+                .getResultList();
     }
 
     @Override
@@ -44,13 +48,6 @@ public class BookDAOImp implements BookDAO {
 
     @Override
     public void updateBook(Book book) {
-        /*entityManager.createQuery("update Books set title =:title," +
-                "desription = :description, isbn = :isbn," +
-                "print_year = :print_year, read_already = :read_already" +
-                " where b.id = :id", CLASS).setParameter("id", book.getId())
-                .setParameter("title",book.getTitle()).setParameter("description",book.getDescription())
-                .setParameter("isbn", book.getIsbn()).setParameter("read_already",book.isRead_already())
-                .setParameter("print_year",book.getPrint_year()).executeUpdate();*/
         entityManager.merge(book);
         return;
     }

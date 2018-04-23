@@ -18,11 +18,24 @@ public class BookController {
 
 
     @RequestMapping(name = "/", method = RequestMethod.GET)
-    public String getAllBooks(Model model) {
-        model.addAttribute("books", service.getAllBooks());
+    public String getAllBooks(Model model,  @RequestParam(required = false, defaultValue = "0") int id,
+                              @RequestParam(required = false, defaultValue = "") String title,
+                              @RequestParam(required = false, defaultValue = "") String author) {
+        if (id != 0){
+            model.addAttribute("books",service.getBookById(id));
+        } else{
+            if (!title.equals("")){
+                model.addAttribute("books",service.getBookByTitle(title));
+            } else {
+                if ((!author.equals(""))){
+                    model.addAttribute("books",service.getBooksByAuthor(author));
+                } else {
+                    model.addAttribute("books", service.getAllBooks());
+                }
+            }
+        }
         return "index";
     }
-
 
     @PostMapping(name = "/addBook")
     public String addBookPage(@RequestParam String title, @RequestParam String author, @RequestParam String isbn,
